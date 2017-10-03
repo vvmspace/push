@@ -98,8 +98,8 @@ function subscribeUser() {
     })
         .then(function(subscription) {
             console.log('Пользователь подписан');
-
-            // updateSubscriptionOnServer(subscription);
+            // Обновление подписки на сервере
+            updateSubscriptionOnServer(subscription);
 
             isSubscribed = true;
 
@@ -120,4 +120,19 @@ function updateBtn() {
     }
 
     pushButton.disabled = false;
+}
+
+function updateSubscriptionOnServer(subscription) {
+    // TODO: отправка информации о подписке на сервер приложения
+
+    const subscriptionJson = document.querySelector('.js-subscription-json');
+    const subscriptionDetails =
+        document.querySelector('.js-subscription-details');
+
+    if (subscription) {
+        subscriptionJson.textContent = JSON.stringify(subscription);
+        subscriptionDetails.classList.remove('is-invisible');
+    } else {
+        subscriptionDetails.classList.add('is-invisible');
+    }
 }
