@@ -42,3 +42,20 @@ function urlB64ToUint8Array(base64String) {
   }
   return outputArray;
 }
+
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Service Worker и Push уведомления доступны');
+
+    navigator.serviceWorker.register('sw.js')
+        .then(function(swReg) {
+            console.log('Service Worker зарегистрирован', swReg);
+
+            swRegistration = swReg;
+        })
+        .catch(function(error) {
+            console.error('Ошибка Service Worker`а', error);
+        });
+} else {
+    console.warn('Push сообщения не поддерживаются');
+    pushButton.textContent = 'Push сообщения не поддерживаются';
+}
