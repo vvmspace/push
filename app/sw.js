@@ -22,7 +22,7 @@
 'use strict';
 
 self.addEventListener('push', function(event) {
-    console.log('[Service Worker] Push уведомление плоучено.');
+    console.log('[Service Worker] Push уведомление получено.');
     console.log('[Service Worker] Текст Push уведомления:' + event.data.text());
 
     const title = 'Push Codelab';
@@ -31,6 +31,5 @@ self.addEventListener('push', function(event) {
         icon: 'images/icon.png',
         badge: 'images/badge.png'
     };
-
     event.waitUntil(self.registration.showNotification(title, options));
 });
