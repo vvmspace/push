@@ -70,7 +70,7 @@ function initialiseUI() {
         if (isSubscribed) {
             // TODO: Отключение подписки пользователя
         } else {
-            // subscribeUser();
+            subscribeUser();
         }
     });
     // Запрос подписан ли пользователь
@@ -84,6 +84,29 @@ function initialiseUI() {
                 console.log('Пользователь не подписан');
             }
 
+            updateBtn();
+        });
+}
+
+
+// Подписка пользователя
+function subscribeUser() {
+    const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+    swRegistration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: applicationServerKey
+    })
+        .then(function(subscription) {
+            console.log('Пользователь подписан');
+
+            // updateSubscriptionOnServer(subscription);
+
+            isSubscribed = true;
+
+            updateBtn();
+        })
+        .catch(function(err) {
+            console.log('Не удалось подписать пользователя: ', err);
             updateBtn();
         });
 }
