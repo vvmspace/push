@@ -64,7 +64,16 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 // Инициализация пользовательского интерфейса
 
 function initialiseUI() {
-    // Запрос подписки
+    // Клик по кнопке "подписаться"
+    pushButton.addEventListener('click', function() {
+        pushButton.disabled = true;
+        if (isSubscribed) {
+            // TODO: Отключение подписки пользователя
+        } else {
+            // subscribeUser();
+        }
+    });
+    // Запрос подписан ли пользователь
     swRegistration.pushManager.getSubscription()
         .then(function(subscription) {
             isSubscribed = !(subscription === null);
