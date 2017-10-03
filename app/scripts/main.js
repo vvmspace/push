@@ -113,6 +113,14 @@ function subscribeUser() {
 
 // Обновление кнопки
 function updateBtn() {
+    // Проверка прав
+    if (Notification.permission === 'denied') {
+        pushButton.textContent = 'Push сообщения заблокированы';
+        pushButton.disabled = true;
+        updateSubscriptionOnServer(null);
+        return;
+    }
+    // Подписан ли пользователь
     if (isSubscribed) {
         pushButton.textContent = 'Отключить Push уведомления';
     } else {
