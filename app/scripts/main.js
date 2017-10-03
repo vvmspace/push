@@ -59,3 +59,32 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.warn('Push сообщения не поддерживаются');
     pushButton.textContent = 'Push сообщения не поддерживаются';
 }
+
+// Инициализация пользовательского интерфейса
+
+function initialiseUI() {
+    // Запрос подписки
+    swRegistration.pushManager.getSubscription()
+        .then(function(subscription) {
+            isSubscribed = !(subscription === null);
+
+            if (isSubscribed) {
+                console.log('Пользователь подписан');
+            } else {
+                console.log('Пользователь не подписан');
+            }
+
+            updateBtn();
+        });
+}
+
+// Обновление кнопки
+function updateBtn() {
+    if (isSubscribed) {
+        pushButton.textContent = 'Отключить Push уведомления';
+    } else {
+        pushButton.textContent = 'Включить Push уведомления';
+    }
+
+    pushButton.disabled = false;
+}
