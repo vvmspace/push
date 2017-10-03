@@ -51,6 +51,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
             console.log('Service Worker зарегистрирован', swReg);
 
             swRegistration = swReg;
+            initialiseUI();
         })
         .catch(function(error) {
             console.error('Ошибка Service Worker`а', error);
